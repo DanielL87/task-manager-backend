@@ -405,6 +405,8 @@ fetch(`${API}/categories/2`, {
 
 # Alerts
 
+`placeholder`
+
 ## GET /tasks/:id/alerts
 
 ## POST /tasks/:id/alerts
