@@ -24,7 +24,7 @@ fetch(`${API}/users/register`, {
 ```js
 {
   "success": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDY1MjQ3Ny0yZDY1LTQzYzctYTJmMS1mMzU4ZTQyMGQxYWEiLCJpYXQiOjE2OTQ1Mjk3MDh9.a1HjJulV55JAwyKfKt8sTjpq0AKgGcahBNM1efgFE5g"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDY1MjQ3"
 }
 ```
 
@@ -50,7 +50,7 @@ fetch(`${API}/users/login`, {
 ```js
 {
   "success": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDY1MjQ3Ny0yZDY1LTQzYzctYTJmMS1mMzU4ZTQyMGQxYWEiLCJpYXQiOjE2OTQ1Mjk3MDh9.a1HjJulV55JAwyKfKt8sTjpq0AKgGcahBNM1efgFE5g"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDY1Mj"
 }
 ```
 
@@ -62,7 +62,7 @@ fetch(`${API}/users/login`, {
 fetch(`${API}/users/token`, {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy1mZTE0LTQ2NzgtYjAwMC03YzJkNTFkYmE3MWEiLCJpYXQiOjE2OTQ1MjE5Nzl9.6qiWcCWgOA3Wvie8pjimOs1j8irhOQy6WfdVUNhUhkU",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy1m",
   },
 });
 ```
@@ -170,22 +170,98 @@ fetch(`${API}/tasks`, {
   headers: {
     "Content-Type": "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy1mZTE0LTQ2NzgtYjAwMC03YzJkNTFkYmE3MWEiLCJpYXQiOjE2OTQ1MjE5Nzl9.6qiWcCWgOA3Wvie8pjimOs1j8irhOQy6WfdVUNhUhkU",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy1mZ",
   },
   body: JSON.stringify({
-    title: "Review of the new iphone 13 mini", 
-    description: "it's pretty good!", // optional
+    title: "Pay Bills", 
+    description: "Pay electric and water bills", // optional
     categoryId: "f3e47327-808e-4343-b6d9-bed030c2e9ff",
     due_date: "2023-10-15",
     priority: "medium", //optional
   }),
 });
 ```
+### Response:
 
+```js
+{
+  "success": true,
+  "task": {
+      "id": 123,
+      "title": "Pay Bills",
+      "description": "Pay electric and water bills",
+      "categoryId" : "f3e47327-808e-4343-b6d9-bed030c2e9ff",
+      "due_date": "22023-10-15",
+      "priority": "medium",
+      "completed": false
+    }
+}
+```
 
 ## DELETE /tasks/:id
 
+### Request:
+
+```js
+fetch(`${API}/tasks/2`, {
+  method: "DELETE",
+  headers: {
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwM2NhMTI4MS1kZG",
+  },
+});
+```
+
+### Response:
+
+```js
+{
+  "success": true,
+  "task":   {
+      "id": 2,
+      "title": "Finish project report"
+    }
+}
+```
+
 ## PUT /tasks/:id 
+
+### Request:
+
+```js
+fetch(`${API}/tasks/2`, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy",
+  },
+  body: JSON.stringify({
+      title: "Start project report", //optional
+      description: "Complete the Q4 sales report", //optional
+      due_date: "2023-10-20", //optional
+      priority: "low", //optional
+      completed: false, //optional
+      category: "remote-work" //optional
+  }),
+});
+```
+
+### Response:
+
+```js
+{
+  "success": true,
+  "task": {
+    "title": "Start project report",
+    "description": "Complete the Q4 sales report",
+    "due_date": "2023-10-20",
+    "priority": "low",
+    "completed": false,
+    "category": "remote-work"
+  }
+}
+```
 
 # Categories
 ## GET /categories
