@@ -144,7 +144,7 @@ fetch(`${API}/tasks/2`);
 
 ```
 {
-  "status": "success",
+  "success": true,
   "task": {
       "id": 2,
       "title": "Finish project report",
@@ -175,8 +175,8 @@ fetch(`${API}/tasks`, {
   body: JSON.stringify({
     title: "Pay Bills", 
     description: "Pay electric and water bills", // optional
-    categoryId: "f3e47327-808e-4343-b6d9-bed030c2e9ff",
-    due_date: "2023-10-15",
+    categoryId: "f3e47327-808e-4343-b6d9-bed030c2e9ff", //optional
+    due_date: "2023-10-15", //optional
     priority: "medium", //optional
   }),
 });
@@ -266,13 +266,137 @@ fetch(`${API}/tasks/2`, {
 # Categories
 ## GET /categories
 
+### Request:
+
+```js
+fetch(`${API}/categories`);
+```
+
+```js
+{
+  "success": true,
+  "categories": [
+    {
+      "id": "1",
+      "name": "Home",
+    },
+    {
+      "id": "2",
+      "name": "Work",
+
+    },
+    {
+      "id": "3",
+      "name": "Personal",
+    }
+  ]
+}
+```
+
 ## GET /categories/:id
+
+### Request:
+
+```js
+fetch(`${API}/categories/2`);
+```
+
+### Response:
+
+```
+{
+  "success": true ,
+  "category": {
+      "id": "2",
+      "name": "Work",
+    }
+}
+
+```
 
 ## POST /categories
 
-## DELETE /categories
+### Request:
+
+```js
+fetch(`${API}/categories`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy1mZ",
+  },
+  body: JSON.stringify({
+  name: "Entertainment" 
+  }),
+});
+```
+
+### Response:
+
+```js
+{
+  "success": true,
+  "category": {
+      "id": 4,
+      "name": "Entertainment" 
+    }
+}
+```
+
+## DELETE /categories/:id 
+
+### Request:
+
+```js
+fetch(`${API}/categories/2`, {
+  method: "DELETE",
+  headers: {
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwM2NhMTI4MS1kZG",
+  },
+});
+```
+
+```js
+{
+  "success": true,
+  "category": {
+      "id": "2",
+      "name": "Work",
+    }
+}
+```
 
 ## PUT /categories
+
+### Request:
+
+```js
+fetch(`${API}/categories/2`, {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYjExZDIzMy",
+  },
+  body: JSON.stringify({
+    name: "Home"
+  }),
+});
+```
+
+### Response:
+
+```js
+{
+  "success": true,
+  "category": {
+    "name" : "Home"
+  }
+}
+```
+
 
 # Alerts
 
