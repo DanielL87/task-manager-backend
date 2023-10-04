@@ -403,14 +403,3 @@ fetch(`${API}/categories/2`, {
 }
 ```
 
-# Alerts
-
-`placeholder`
-
-## GET /tasks/:id/alerts
-
-## POST /tasks/:id/alerts
-
-## DELETE /tasks/:id/alerts
-
-## PUT /tasks/:id/alerts
