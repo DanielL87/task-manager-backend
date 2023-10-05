@@ -3,6 +3,7 @@ import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import { userRouter } from "./routes/userRouter.js";
 
 const app = express();
 export const prisma = new PrismaClient();
@@ -46,9 +47,11 @@ app.use(async (req, res, next) => {
 app.get("/", (req, res) => {
   res.send({
     success: true,
-    message: "Welcome to the Reddit backend server!",
+    message: "Welcome to the Task Manager backend server!",
   });
 });
+
+app.use("/users", userRouter);
 
 app.use((req, res) => {
   res.send({ success: false, error: "No route found." });
