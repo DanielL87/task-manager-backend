@@ -15,6 +15,7 @@ userRouter.get("/", (req, res) => {
 userRouter.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+
     if (!username || !password) {
       return res.send({
         success: false,
@@ -37,6 +38,7 @@ userRouter.post("/login", async (req, res) => {
     }
     //Checks password
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    
     if (!isPasswordValid) {
       return res.send({
         success: false,
@@ -45,6 +47,7 @@ userRouter.post("/login", async (req, res) => {
     }
     //Creates Token and sends response
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+
     res.send({
       success: true,
       token,
@@ -61,6 +64,13 @@ userRouter.post("/register", async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    if (!username || !password) {
+      return res.send({
+        success: false, 
+        error:"User and/or password is invalid."
+      })
+    }
+
     //Checks if user already exists
     const checkUser = await prisma.user.findUnique({
       where: {
@@ -76,6 +86,7 @@ userRouter.post("/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await prisma.user.create({
       data: {
         username,
