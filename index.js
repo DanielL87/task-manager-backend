@@ -7,6 +7,8 @@ import dotenv from "dotenv";
 
 // import routers 
 import { userRouter } from "./routes/userRouter.js";
+import { categoryRouter } from "./routes/categoryRouter.js";
+import { taskRouter } from "./routes/taskRouter.js";
 
 const app = express();
 export const prisma = new PrismaClient();
@@ -58,6 +60,8 @@ app.get("/", (req, res) => {
 
 // router for users
 app.use("/users", userRouter);
+app.use("/categories", categoryRouter);
+app.use("/tasks", taskRouter);
 
 app.use((req, res) => {
   res.send({ success: false, error: "No route found." });
