@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { userRouter } from "./routes/userRouter.js";
+import { categoryRouter } from "./routes/categoryRouter.js";
+import { taskRouter } from "./routes/taskRouter.js";
 
 const app = express();
 export const prisma = new PrismaClient();
@@ -52,6 +54,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRouter);
+app.use("/categories", categoryRouter);
+app.use("/tasks", taskRouter);
 
 app.use((req, res) => {
   res.send({ success: false, error: "No route found." });
