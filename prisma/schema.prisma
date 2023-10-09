@@ -35,11 +35,11 @@ enum Priority {
 model Task {
   id          String    @id @default(uuid())
   title       String
-  description String
+  description String?
   dueDate     DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  priority    Priority
+  priority    Priority?
   completed   Boolean   @default(false)
   category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId  String
