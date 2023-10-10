@@ -61,10 +61,10 @@ taskRouter.post("/", async (req, res) => {
     const { title, description, categoryId, priority, dueDate, completed } =
       req.body;
 
-    if (!title || !priority || !categoryId) {
+    if (!title || !categoryId) {
       return res.send({
         success: false,
-        error: "Please include title, and categoryId name when creating a task",
+        error: "Please include title, and categoryId when creating a task",
       });
     }
 

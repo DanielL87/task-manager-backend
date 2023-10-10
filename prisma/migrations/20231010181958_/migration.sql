@@ -23,12 +23,12 @@ CREATE TABLE "Category" (
 CREATE TABLE "Task" (
     "id" STRING NOT NULL,
     "title" STRING NOT NULL,
-    "description" STRING NOT NULL,
-    "dueDate" TIMESTAMP(3) NOT NULL,
+    "description" STRING,
+    "dueDate" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "priority" "Priority" NOT NULL,
-    "completed" BOOL NOT NULL,
+    "priority" "Priority",
+    "completed" BOOL NOT NULL DEFAULT false,
     "categoryId" STRING NOT NULL,
     "userId" STRING NOT NULL,
 
