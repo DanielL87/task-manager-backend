@@ -6,6 +6,7 @@ export const taskRouter = express.Router();
 taskRouter.get("/", async (req, res) => {
   try {
     const tasks = await prisma.task.findMany({
+      where: { userId: req.user.id },
       include: {
         category: true,
         user: {

@@ -6,7 +6,14 @@ export const categoryRouter = express.Router();
 //getallcategories
 categoryRouter.get("/", async (req, res) => {
   try {
+    if (!req.user) {
+      return res.send({
+        success: false,
+        error: "You must be logged in to fetch categories!",
+      });
+    }
     const categories = await prisma.category.findMany({
+      where: { userId: req.user.id },
       include: {
         user: {
           select: {
