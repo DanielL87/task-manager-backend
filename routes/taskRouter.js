@@ -59,8 +59,12 @@ taskRouter.get("/:taskId", async (req, res) => {
 //Work in Progress
 taskRouter.post("/", async (req, res) => {
   try {
-    const { title, description, categoryId, priority, dueDate, completed } =
+    let { title, description, categoryId, priority, dueDate, completed } =
       req.body;
+
+    if (dueDate !== null) {
+      dueDate = new Date(dueDate);
+    }
 
     if (!title || !categoryId) {
       return res.send({
@@ -68,13 +72,6 @@ taskRouter.post("/", async (req, res) => {
         error: "Please include title, and categoryId when creating a task",
       });
     }
-
-    // if (priority !== "LOW" || "MEDIUM" || "HIGH") {
-    //   return res.send({
-    //     success: false,
-    //     error: "Please include a valid Priorty Value!(LOW, MEDIUM, HIGH)",
-    //   });
-    // }
 
     if (!req.user) {
       return res.send({
