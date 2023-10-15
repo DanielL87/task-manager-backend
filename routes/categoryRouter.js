@@ -53,6 +53,21 @@ categoryRouter.post("/", async (req, res) => {
       });
     }
 
+    // Check if a category with the same name and user ID already exists
+    const existingCategory = await prisma.category.findFirst({
+      where: {
+        name,
+        userId: req.user.id,
+      },
+    });
+
+    if (existingCategory) {
+      return res.send({
+        success: false,
+        error: "Category name already exists for this user.",
+      });
+    }
+
     const category = await prisma.category.create({
       data: {
         name,
