@@ -64,6 +64,7 @@ taskRouter.post("/", async (req, res) => {
 
     if (dueDate !== null) {
       dueDate = new Date(dueDate);
+      console.log(dueDate);
     }
 
     if (!title || !categoryId) {
@@ -108,10 +109,10 @@ taskRouter.put("/:taskId", async (req, res) => {
     if (
       !description &&
       !title &&
-      !priority &&
-      !completed &&
-      !dueDate &&
-      !categoryId
+      priority &&
+      completed &&
+      dueDate &&
+      categoryId
     ) {
       return res.send({
         success: false,
@@ -121,6 +122,7 @@ taskRouter.put("/:taskId", async (req, res) => {
 
     if (dueDate !== null) {
       dueDate = new Date(dueDate);
+      console.log(dueDate);
     }
 
     if (!req.user) {
