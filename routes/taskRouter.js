@@ -102,21 +102,25 @@ taskRouter.put("/:taskId", async (req, res) => {
   try {
     const userId = req.user.id;
     const { taskId } = req.params;
-    const { title, description, priority, dueDate, completed, categoryId } =
+    let { title, description, priority, dueDate, completed, categoryId } =
       req.body;
 
     if (
       !description &&
       !title &&
-      priority &&
-      completed &&
-      dueDate &&
-      categoryId
+      !priority &&
+      !completed &&
+      !dueDate &&
+      !categoryId
     ) {
       return res.send({
         success: false,
         error: "Please provide an update!",
       });
+    }
+
+    if (dueDate !== null) {
+      dueDate = new Date(dueDate);
     }
 
     if (!req.user) {
