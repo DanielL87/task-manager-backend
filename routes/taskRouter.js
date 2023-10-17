@@ -103,9 +103,9 @@ taskRouter.put("/:taskId", async (req, res) => {
   try {
     const userId = req.user.id;
     const { taskId } = req.params;
-    let { title, description, priority, dueDate, completed, categoryId } =
+    const { title, description, priority, dueDate, completed, categoryId } =
       req.body;
-
+    console.log(completed);
     if (
       !description &&
       !title &&
@@ -120,10 +120,9 @@ taskRouter.put("/:taskId", async (req, res) => {
       });
     }
 
-    if (dueDate !== null) {
-      dueDate = new Date(dueDate);
-      console.log(dueDate);
-    }
+    // if (dueDate !== null) {
+    //   dueDate = new Date(dueDate);
+    // }
 
     if (!req.user) {
       return res.send({
