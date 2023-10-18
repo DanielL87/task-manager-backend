@@ -107,7 +107,6 @@ taskRouter.put("/:taskId", async (req, res) => {
 
     if (dueDate && dueDate !== null) {
       dueDate = new Date(dueDate);
-      console.log(dueDate);
     }
 
     if (
