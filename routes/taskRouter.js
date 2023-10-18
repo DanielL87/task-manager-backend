@@ -63,7 +63,7 @@ taskRouter.post("/", async (req, res) => {
       req.body;
 
     if (dueDate !== null) {
-      dueDate = new Date(dueDate);
+      dueDate = new Date(dueDate).toISOString();
     }
 
     if (!title || !categoryId) {
@@ -106,7 +106,7 @@ taskRouter.put("/:taskId", async (req, res) => {
       req.body;
 
     if (dueDate && dueDate !== null) {
-      dueDate = new Date(dueDate);
+      dueDate = new Date(dueDate).toISOString();
     }
 
     if (
